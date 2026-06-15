@@ -172,7 +172,7 @@ Tokyo-Last-Mile-Delivery-Performance-Analysis/
 ├── aws/
 │   └── s3_upload_screenshot.png
 └── insights/
-└── Tokai_Logistics_Insight_Narrative.docx
+    └── Tokai_Logistics_Insight_Narrative.docx
 ```
 
 ## How to Run
