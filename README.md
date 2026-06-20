@@ -51,32 +51,32 @@ window (morning, afternoon, evening, night)?
 
 ## Methodology
 
-1. **Data Generation (Python)** — Generated a synthetic dataset 
+1. **Data Generation (Python):** Generated a synthetic dataset 
 simulating 50,279 total delivery records across 18 columns for the 
 year 2024, calibrated against published Japanese logistics industry 
 data including Yamato Holdings delivery windows, Japan Meteorological 
 Agency weather frequencies, and Ministry of Land, Infrastructure, 
 Transport and Tourism delivery failure statistics.
 
-2. **Cloud Integration (AWS S3, boto3)** — Uploaded the cleaned 
+2. **Cloud Integration (AWS S3, boto3):** Uploaded the cleaned 
 dataset to AWS S3 using Python's boto3 library, implementing cloud 
 data integration architecture designed to scale to Amazon Redshift 
 in a production environment.
 
-3. **SQL Analysis (SQLite)** — Built a SQLite database with 
+3. **SQL Analysis (SQLite):** Built a SQLite database with 
 appropriate indexing on the deliveries table and wrote five 
 analytical queries examining hub delay patterns by weather and 
 prefecture, rolling weekly delay trends, busiest hours per hub with 
 delay correlation, combined revenue impact with attempt-weighted 
 cost modeling, and delivery window performance.
 
-4. **Revenue Recovery Simulation (Python)** — Created a simulation 
+4. **Revenue Recovery Simulation (Python):** Created a simulation 
 modeling the financial impact of pre-delivery confirmation 
-interventions on Night window deliveries at 25%, 30%, and 35% 
+interventions on night window deliveries at 25%, 30%, and 35% 
 failure reduction rates, calibrated against published Japanese 
 logistics research.
 
-5. **Dashboard (Power BI)** — Built an interactive dashboard 
+5. **Dashboard (Power BI):** Built an interactive dashboard 
 connected to the SQLite database via ODBC, presenting hub 
 performance with dual-axis visualization, monthly delay trends, 
 revenue impact breakdown, and weather impact analysis with 
@@ -88,23 +88,23 @@ interactive filtering.
 
 **Python:** Synthetic data generation with realistic logistical hub 
 delivery time frames and weather condition effects, AWS S3 integration 
-via boto3, revenue recovery simulation modeling
+via boto3, revenue recovery simulation modeling.
 
 **SQL:** DENSE_RANK, ROW_NUMBER, LAG, PARTITION BY, multi-CTE chained 
-queries, CASE WHEN aggregation, attempt-weighted revenue modeling
+queries, CASE WHEN aggregation, attempt-weighted revenue modeling.
 
 **Power BI:** Data modeling, DAX measures, interactive slicer, 
-dashboard design, dual-axis charting
+dashboard design, dual-axis charting.
 
 **AWS:** S3 cloud storage configuration, boto3 programmatic upload, 
-IAM credential management
+IAM credential management.
 
 ---
 
 ## Results
 
 **Hub performance is consistent across the network, with variation 
-driven by specific factors rather than hub-level differences.** The 
+driven by specific factors rather than hub-level differences:** The 
 five Tokai Logistics hubs operate within a narrow performance band 
 of 46.77% to 47.20% delay rate, indicating consistent operational 
 capability across the network. However, the analysis identified 
@@ -113,30 +113,30 @@ significant variation in delivery success within that overall
 pattern.
 
 **Delivery time window is the most operationally actionable driver 
-of failure.** Failure rates climbed progressively from 8.82% in 
+of failure:** Failure rates climbed progressively from 8.82% in 
 morning windows to 11.87% in night windows, a 35% relative increase. 
 The night window generated ¥964,800 in re-delivery costs alone, 37% 
-higher than the morning window — consistent with documented Japanese 
+higher than the morning window, which is consistent with documented Japanese 
 consumer absence patterns during evening hours.
 
 **A sustained four-week degradation period aligned with typhoon 
-season.** Performance progressively declined from week 32 through 
+season:** Performance progressively declined from week 32 through 
 week 35 (August 5–26), consistent with Japan's typhoon season impact 
 on Tokyo metropolitan deliveries. October and December each showed 
 elevated monthly average delay (6.32 and 6.37 minutes respectively), 
 reflecting holiday peak volume combined with winter weather 
-variability. Delay rates tied to snow or heavy rainfall — 
-particularly at Chiba and Yokohama Hubs — indicate operational or 
+variability. Delay rates tied to snow or heavy rainfall, 
+particularly at Chiba and Yokohama Hubs, indicate operational or 
 routing issues rather than distance-driven factors.
 
 **Staffing appears optimized for known peaks but under-resourced 
-during transitional periods.** Only Chiba Hub showed the expected 
+during transitional periods:** Only Chiba Hub showed the expected 
 pattern of higher delay rates correlating with higher volume; the 
 remaining four hubs showed inverse or flat patterns, with their 
 busiest hours performing better than medium-volume hours.
 
 **The standard revenue impact methodology significantly understates 
-true cost.** The flat re-delivery cost calculation understates 
+true cost:** The flat re-delivery cost calculation understates 
 actual costs by approximately ¥1,967,200 annually by not accounting 
 for multi-attempt failures. The attempt-weighted model captures this 
 previously invisible cost component, raising total annual revenue 
@@ -148,22 +148,22 @@ impact from ¥4,825,900 to ¥5,985,600.
 
 The revenue recovery model projects that implementing pre-delivery 
 confirmation for Night window deliveries alone, calibrated against 
-the 25–35% failure reduction documented in published Japanese 
+the 25-35% failure reduction documented in published Japanese 
 logistics research, would prevent an estimated 301 to 422 failed 
 deliveries annually and recover between ¥358,405 and ¥502,481 in 
 attempt-weighted re-delivery costs. Recommended actions include:
 
-**Implement differential pricing for delivery windows.** Premium 
+**Implement differential pricing for delivery windows:** Premium 
 rates for evening and night slots would encourage customers to opt 
 for more reliable morning and afternoon delivery windows, reducing 
 exposure to the highest-failure time periods.
 
-**Deploy pre-delivery confirmation for evening and night windows.** 
+**Deploy pre-delivery confirmation for evening and night windows:** 
 Requiring customer acknowledgment of presence before dispatch, via 
 SMS or mobile app, directly targets the customer-absence pattern 
 identified as the primary driver of night-window failures.
 
-**Establish and promote alternative delivery options.** Locker 
+**Establish and promote alternative delivery options:** Locker 
 pickup (PUDO locations) and convenience store delivery for customers 
 selecting evening or night windows address the customer absence 
 problem at the root rather than relying on redelivery attempts.
@@ -176,17 +176,17 @@ evening and night delivery windows.
 
 ## Next Steps
 
-**Staffing mismatch investigation.** Determine efficient staffing 
+**Staffing mismatch investigation:** Determine efficient staffing 
 solutions for lower-performing time windows across all hubs, given 
 that current staffing appears optimized for known peaks rather than 
 actual demand patterns.
 
-**Weather-specific operational protocols.** Develop vehicle 
+**Weather-specific operational protocols:** Develop vehicle 
 preparation, route adjustments, and predictive scheduling procedures 
 for forecasted adverse weather events, particularly for Chiba and 
 Yokohama Hubs given their elevated snow- and rain-related delays.
 
-**Inter-hub coordination opportunities.** Investigate options to 
+**Inter-hub coordination opportunities:** Investigate options to 
 balance volume distribution during weather events or seasonal peaks, 
 allowing better-positioned hubs to absorb overflow from heavily 
 impacted hubs.
